@@ -38,6 +38,12 @@
       size: "1.2GB",
     },
   ];
+
+  const handleDelete = (e) => {
+    console.log(e);
+    console.log(e.detail); //on recoit les parametres du dispatch deqns le détail
+    imageDetails = imageDetails.filter((img) => img.id != e.detail);
+  };
 </script>
 
 <div class="bg-slate-50 flex flex-col min-h-screen">
@@ -55,11 +61,17 @@
     >
       Ceci es le painde goulagwe
     </p>
+    <button
+      class="m-8 p-2 bg-red-600 text-white"
+      on:click|once={() => alert("Au gogole")}
+    >
+      Alerte au gogole
+    </button>
 
     <ul class="grid grid-cols-2 gap-x-4 gap-y-8 mt-8 lg:grid-cols-4">
       {#each imageDetails as detail}
         <!-- <ImageDetail name={ImageDetail.name} src={ImageDetail.src} size={ImageDetail.size}/> -->
-        <ImageDetail {...detail} />
+        <ImageDetail {...detail} on:deleteImg={handleDelete} />
       {/each}
     </ul>
   </main>

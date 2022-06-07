@@ -2,7 +2,7 @@
   import "./assets/css/style.css";
   import Vegetables from "./Vegetables.svelte";
 
-  let vegetablesList = [
+  let vegetables = [
     {
       name: "Radish",
       season: "Summer",
@@ -44,6 +44,17 @@
       season: "Autumn",
     },
   ];
+  let show = false;
+  let vegetable = {};
+
+  const showList = () => {
+    show = true;
+    vegetable = {};
+  };
+  const showMeOne = () => {
+    show = true;
+    vegetable = vegetables[Math.floor(Math.random() * vegetables.length)];
+  };
 </script>
 
 <div class="bg-slate-50 flex flex-col min-h-screen">
@@ -56,18 +67,32 @@
     class="container flex justify-between mx-auto m-8 border-2 border-dashed rounded p-8"
   >
     <!-- CONTENU ICI -->
-    <button
-      class="px-3 py-2 bg-amber-600 rounded text-white "
-      on:click={handleClick}
-    >
-      Show de list of the Vegetables 🥕<button />
-    </button>
-    <button
-      class="px-10 py-2 bg-green-600 rounded text-white "
-      on:click={handleClick}
-    >
-      Show me one Vegetable 🥕<button />
-    </button>
+
+    <div class="flex justify-around my-3">
+      <button
+        class="px-3 py-2 bg-amber-600 rounded text-white "
+        on:click={showList}
+        >Show de list of the Vegetables 🥕<button />
+      </button>
+
+      <button
+        class="px-10 py-2 bg-green-600 rounded text-white "
+        on:click={showMeOne}
+      >
+        Show me one Vegetable 🥕<button />
+      </button>
+    </div>
+    <div>
+      {#if show}
+        {#if Object.keys(vegetable).length}
+          <h2 class="text-3xl font-bold text-center">
+            {vegetable.name}({vegetable.season})
+          </h2>
+        {:else}
+          <Vegetables {vegetables} />
+        {/if}
+      {/if}
+    </div>
   </main>
 </div>
 

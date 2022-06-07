@@ -2,15 +2,10 @@
   import { createEventDispatcher } from "svelte";
 
   export let id;
-  export let name;
-  export let size;
   export let src;
+  export let name;
 
   const dispatch = createEventDispatcher();
-
-  const deleteThisFuckingImage = () => {
-    dispatch("deleteImg", id);
-  };
 </script>
 
 <li class="relative">
@@ -19,7 +14,7 @@
   >
     <img
       {src}
-      alt=""
+      alt="flag"
       class="object-cover pointer-events-none group-hover:opacity-75"
     />
   </div>
@@ -28,11 +23,4 @@
   >
     {name}
   </p>
-  <p class="block text-sm font-medium text-gray-500 pointer-events-none">
-    {size}
-  </p>
-  <button
-    class="block px-2 py-1 mx-auto text-sm text-right text-white duration-200 bg-red-500 hover:bg-red-300"
-    on:click={deleteThisFuckingImage}>Delete</button
-  >
 </li>
