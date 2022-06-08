@@ -1,6 +1,5 @@
 <script>
   import "./assets/css/style.css";
-  import Countries from "./Countries.svelte";
 
   let countries = [
     {
